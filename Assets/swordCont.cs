@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class swordCont : MonoBehaviour
 {
-
-    public GameObject parent;
-
     // Update is called once per frame
     void Update()
     {

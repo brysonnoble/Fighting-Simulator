@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1352796533}
   m_Layer: 9
   m_Name: Red_Idle
-  m_TagString: Untagged
+  m_TagString: p2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -238,6 +238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 52ad59b4e6b7cc5458e21a0a322f6e49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
   list:
   - {fileID: 8300000, guid: 413d6b3f80026814c955ea0058f463f3, type: 3}
   - {fileID: 8300000, guid: a8c1b09406825c14d9b812c5fb6fac7f, type: 3}
@@ -245,7 +246,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 17bcce1524a37c24da0134a8839a7663, type: 3}
   - {fileID: 8300000, guid: afff7c69ffe39694f96e20342ab96bb7, type: 3}
   sound: {fileID: 1352796532}
-  p2Health: 100
   rb: {fileID: 5878535829045905562}
   bc: {fileID: 5878535829045905563}
   anim: {fileID: 0}

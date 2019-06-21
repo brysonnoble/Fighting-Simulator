@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P1Controller : MonoBehaviour
+public class P1Controller : BasePlayer
 {
 
     public AudioClip[] list;
     public AudioSource sound;
 
-    public float p1Health = 100f;
     private float speed = 5f;
     private int jumpNum = 0;
     private bool facingRight = true;
@@ -93,11 +92,13 @@ public class P1Controller : MonoBehaviour
         {
             isCrouching = true;
             anim.SetInteger("condition", 1);
+            bc.size = new Vector3(4f, 12f);
         }
         if (Input.GetKeyUp("s"))
         {
             isCrouching = false;
             anim.SetInteger("condition", 0);
+            bc.size = new Vector3(4f, 13.5f);
         }
         if (Input.GetKey("d"))
         {
@@ -121,13 +122,14 @@ public class P1Controller : MonoBehaviour
             if (facingRight == true)
             {
                 GameObject a = Instantiate(arrow, pos, new Quaternion(0, 0, 0, 0));
-                a.GetComponent<arrowCont>().parent = gameObject;
+                a.tag = "BlueArrow";
                 sound.clip = list[4];
                 sound.Play();
             }
             if (facingRight == false)
             {
-                Instantiate(arrow, pos, new Quaternion(0, 180, 0, 0));
+                GameObject a = Instantiate(arrow, pos, new Quaternion(0, 180, 0, 0));
+                a.tag = "BlueArrow";
                 sound.clip = list[4];
                 sound.Play();
             }
@@ -136,13 +138,15 @@ public class P1Controller : MonoBehaviour
         {
             if (facingRight == true)
             {
-                Instantiate(sword, new Vector3(pos.x + 0.2f, pos.y, pos.z), new Quaternion(0, 180, 0, 0));
+                GameObject s = Instantiate(sword, new Vector3(pos.x + 0.2f, pos.y, pos.z), new Quaternion(0, 180, 0, 0));
+                s.tag = "BlueSword";
                 sound.clip = list[3];
                 sound.Play();
             }
             if (facingRight == false)
             {
-                Instantiate(sword, new Vector3(pos.x - 0.2f, pos.y, pos.z), Quaternion.identity);
+                GameObject s = Instantiate(sword, new Vector3(pos.x - 0.2f, pos.y, pos.z), Quaternion.identity);
+                s.tag = "BlueSword";
                 sound.clip = list[3];
                 sound.Play();
             }
@@ -162,16 +166,17 @@ public class P1Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Arrow" && col.GetComponent<arrowCont>().parent != gameObject)
+        if (col.gameObject.tag == "RedArrow")
         {
-            print("p1:" + p1Health);
-            p1Health -= Random.Range(3f, 7f);
+            health -= Random.Range(3f, 7f);
+            print("p1:" + health);
             sound.clip = list[0];
             sound.Play();
         }
-        if (col.gameObject.tag == "Sword" && col.GetComponent<arrowCont>().parent != gameObject)
+        if (col.gameObject.tag == "RedSword")
         {
-            p1Health -= Random.Range(7f, 13f);
+            health -= Random.Range(7f, 13f);
+            print("p1:" + health);
             sound.clip = list[0];
             sound.Play();
         }

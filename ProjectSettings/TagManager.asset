@@ -4,8 +4,14 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - BlueArrow
+  - RedArrow
+  - BlueSword
+  - RedSword
   - Arrow
   - Sword
+  - p1
+  - p2
   layers:
   - Default
   - TransparentFX

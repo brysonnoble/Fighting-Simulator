@@ -48,7 +48,11 @@ public class smoothCamera : MonoBehaviour
     public void setP1(Transform p1)
     {
         targets[0] = p1;
-        print(targets[0]);
+    }
+
+    public void setP2(Transform p2)
+    {
+        targets[1] = p2;
     }
 
 }

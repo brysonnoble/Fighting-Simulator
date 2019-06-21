@@ -22,4 +22,17 @@ public class arrowCont : MonoBehaviour
         }
         Destroy(gameObject, 3);
     }
+
+    void OnTriggerEnter2D(Collider2D col)
+    {
+        if(gameObject.tag == "BlueArrow" && col.gameObject.tag != "p1")
+        {
+            Destroy(gameObject);
+        }
+        if (gameObject.tag == "RedArrow" && col.gameObject.tag != "p2")
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

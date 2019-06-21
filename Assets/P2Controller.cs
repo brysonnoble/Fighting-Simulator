@@ -2,12 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class P2Controller : MonoBehaviour
+public class P2Controller : BasePlayer
 {
     public AudioClip[] list;
     public AudioSource sound;
 
-    public float p2Health = 100f;
     private float speed = 5f;
     private int jumpNum = 0;
     private bool facingRight = false;
@@ -119,13 +118,15 @@ public class P2Controller : MonoBehaviour
         {
             if (facingRight == true)
             {
-                Instantiate(arrow, pos, new Quaternion(0, 0, 0, 0));
+                GameObject a = Instantiate(arrow, pos, new Quaternion(0, 0, 0, 0));
+                a.tag = "RedArrow";
                 sound.clip = list[4];
                 sound.Play();
             }
             if (facingRight == false)
             {
-                Instantiate(arrow, pos, new Quaternion(0, 180, 0, 0));
+                GameObject a = Instantiate(arrow, pos, new Quaternion(0, 180, 0, 0));
+                a.tag = "RedArrow";
                 sound.clip = list[4];
                 sound.Play();
             }
@@ -134,15 +135,15 @@ public class P2Controller : MonoBehaviour
         {
             if (facingRight == true)
             {
-                print("right");
-                Instantiate(sword, new Vector3(pos.x + 0.2f, pos.y, pos.z), new Quaternion(0, 180, 0, 0));
+                GameObject s = Instantiate(sword, new Vector3(pos.x + 0.2f, pos.y, pos.z), new Quaternion(0, 180, 0, 0));
+                s.tag = "RedSword";
                 sound.clip = list[3];
                 sound.Play();
             }
             if (facingRight == false)
             {
-                print("left");
-                Instantiate(sword, new Vector3(pos.x - 0.2f, pos.y, pos.z), Quaternion.identity);
+                GameObject s = Instantiate(sword, new Vector3(pos.x + 0.2f, pos.y, pos.z), Quaternion.identity);
+                s.tag = "RedSword";
                 sound.clip = list[3];
                 sound.Play();
             }
@@ -162,16 +163,17 @@ public class P2Controller : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D col)
     {
-        if (col.gameObject.tag == "Arrow" && col.GetComponent<arrowCont>().parent != gameObject)
+        if (col.gameObject.tag == "BlueArrow")
         {
-            print("p2:" + p2Health);
-            p2Health -= Random.Range(3f, 7f);
+            health -= Random.Range(3f, 7f);
+            print("p2:" + health);
             sound.clip = list[0];
             sound.Play();
         }
-        if (col.gameObject.tag == "Sword" && col.GetComponent<arrowCont>().parent != gameObject)
+        if (col.gameObject.tag == "BlueSword")
         {
-            p2Health -= Random.Range(7f, 13f);
+            health -= Random.Range(7f, 13f);
+            print("p2:" + health);
             sound.clip = list[0];
             sound.Play();
         }
